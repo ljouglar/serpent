@@ -5,6 +5,9 @@ class Case:
     def __repr__(self):
         return "Case(x=%r, y=%r)" % (self.x, self.y)
 
+    def to_vect(self):
+        return self.x, self.y
+
     def __add__(self, vecteur):
         return Case(self.x + vecteur[0], self.y + vecteur[1])
 
