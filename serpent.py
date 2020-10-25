@@ -37,6 +37,12 @@ class Serpent:
         self.tete.y = new_tete_y
         return mange_pomme
 
+    def tete_in_queue(self):
+        for case in self.queue:
+            if self.tete.x == case.x and self.tete.y == case.y:
+                return True
+        return False
+
     def show(self, canvas):
         self.tete.show(canvas, True)
         for case in self.queue:
