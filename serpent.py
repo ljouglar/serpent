@@ -15,7 +15,10 @@ class Serpent:
     def longueur(self):
         return len(self.queue) + 1
 
-    def avance(self, direction, mange_pomme=False):
+    def avance(self, direction, pomme):
+        new_tete_x = self.tete.x + direction[0]
+        new_tete_y = self.tete.y + direction[1]
+        mange_pomme = pomme.x == new_tete_x and pomme.y == new_tete_y
         if mange_pomme:
             self.queue.append(Case(0, 0))
         # Chaque écaille prend la place de l'écaille qui la précède
@@ -26,8 +29,9 @@ class Serpent:
             else:
                 self.queue[index].x = self.queue[index - 1].x
                 self.queue[index].y = self.queue[index - 1].y
-        self.tete.x += direction[0]
-        self.tete.y += direction[1]
+        self.tete.x = new_tete_x
+        self.tete.y = new_tete_y
+        return mange_pomme
 
     def show(self, canvas):
         self.tete.show(canvas, True)
