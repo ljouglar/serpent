@@ -2,6 +2,7 @@ from case import Case
 from pomme import Pomme
 from serpent import Serpent
 from tkinter import Tk, Canvas
+from tkinter.messagebox import askokcancel
 
 
 class Game:
@@ -22,8 +23,9 @@ class Game:
     def compute_next_frame(self):
         self.can.delete("all")
         mange_pomme = self.snake.avance(self.direction, self.pomme)
+        if self.snake.tete_in_queue():
+            askokcancel("Game Over")
         self.snake.show(self.can)
-        print(self.snake)
         if mange_pomme:
             self.score += 1
             if self.interval > 100:
