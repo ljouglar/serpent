@@ -1,10 +1,14 @@
+import random
 from case import Case
 
 
 class Serpent:
-    def __init__(self, cases):
-        self.tete = cases[0]
-        self.queue = cases[1:]
+    def __init__(self, direction, length):
+        self.tete = Case(random.randint(length, 24 - length), random.randint(length, 24 - length))
+        self.queue = []
+        for i in range(length - 1):
+            self.queue.append(Case(self.tete.x - (i + 1) * direction[0],
+                                   self.tete.y - (i + 1) * direction[1]))
 
     def __str__(self):
         snake_str = "tete(%d, %d)" % self.tete.to_vect()
