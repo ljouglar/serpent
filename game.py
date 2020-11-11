@@ -23,8 +23,9 @@ class Game:
     def compute_next_frame(self):
         self.can.delete("all")
         mange_pomme = self.snake.avance(self.direction, self.pomme)
-        if self.snake.tete_in_queue():
+        if self.snake.tete_in_queue() or self.snake.hors_zone():
             askokcancel("Game Over")
+            exit(0)
         self.snake.show(self.can)
         if mange_pomme:
             self.score += 1
